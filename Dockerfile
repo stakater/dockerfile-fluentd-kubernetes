@@ -13,6 +13,6 @@ RUN apk add --no-cache --virtual .build-deps \
     apk del .build-deps
 
 # Remove default conf
-RUN rm -f /etc/fluent/*.conf
+RUN rm -f /fluentd/etc/*.conf
 
-COPY ./fluent.conf /etc/fluent/
+COPY ./fluent.conf /fluentd/etc/

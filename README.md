@@ -40,4 +40,4 @@ Sample config for k8s already in image:
 </match>
 ```
 
-Volume map `/etc/fluent/` directory and add `fluent.conf`
+Volume map `/fluentd/etc/` directory and add `fluent.conf`
