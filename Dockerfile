@@ -16,3 +16,8 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN rm -f /fluentd/etc/*.conf
 
 COPY ./fluent.conf /fluentd/etc/
+
+# Replace fluentd executable to run fluentd as root
+# https://github.com/fluent/fluentd-docker-image/issues/48
+RUN rm -rf /etc/service/fluentd/*
+ADD start.sh /etc/service/fluentd/run
