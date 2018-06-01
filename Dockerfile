@@ -1,4 +1,4 @@
-FROM stakater/fluentd:0.14.25
+FROM stakater/fluentd:1.2.0
 
 ENV ELASTICSEARCH_HOST es-logging.default.svc
 
