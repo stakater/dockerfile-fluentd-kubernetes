@@ -13,11 +13,11 @@ RUN apk add --no-cache --virtual .build-deps \
     gem cleanup fluentd && \
     apk del .build-deps && \
     cd /tmp && \
-    wget https://github.com/stakater/kube-gen/releases/download/0.3.1/kube-gen-linux-386 && \
+    wget https://github.com/stakater/kube-gen/releases/download/0.3.1/kube-gen && \
     mkdir -p /fluentd/etc/scripts && \
-    mv /tmp/kube-gen-linux-386 /fluentd/etc/scripts/kube-gen && \
+    mv /tmp/kube-gen /fluentd/etc/scripts/kube-gen && \
     chmod +x /fluentd/etc/scripts/kube-gen && \
-    rm -rf /tmp
+    rm -rf /tmp/*
 
 # Remove default conf
 RUN rm -f /fluentd/etc/*.conf
