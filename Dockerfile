@@ -14,9 +14,9 @@ RUN apk add --no-cache --virtual .build-deps \
     apk del .build-deps && \
     cd /tmp && \
     wget https://github.com/stakater/kube-gen/releases/download/0.3.2/kube-gen && \
-    mkdir -p /fluentd/etc/scripts && \
-    mv /tmp/kube-gen /fluentd/etc/scripts/kube-gen && \
-    chmod +x /fluentd/etc/scripts/kube-gen && \
+    mkdir -p /kubegen/ && \
+    mv /tmp/kube-gen /kubegen/kube-gen && \
+    chmod +x /kubegen/kube-gen && \
     rm -rf /tmp/*
 
 # Remove default conf
@@ -28,4 +28,6 @@ COPY ./kill-processes.sh /fluentd/etc/scripts/
 # Replace fluentd executable to run fluentd as root
 # https://github.com/fluent/fluentd-docker-image/issues/48
 RUN rm -rf /etc/service/fluentd/*
-ADD start.sh /etc/service/fluentd/run
+ADD fluentd.sh /etc/service/fluentd/run
+
+ADD kubegen.sh /etc/service/kubegen/run

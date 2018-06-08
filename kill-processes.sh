@@ -14,6 +14,6 @@ then
     exit 1;
 fi
 
-pids=$(ps | grep "$process_name" | grep -v "grep" | awk '{print $1}');
+pids=$(ps | grep "$process_name" | grep -v "grep" | grep -v "kube-gen" | grep -v "kill-processes" | awk '{print $1}');
 echo "Killing $process_name processess with Process IDs: ${pids}"
 kill -KILL ${pids}
