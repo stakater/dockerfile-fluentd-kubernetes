@@ -13,7 +13,7 @@ RUN apk add --no-cache --virtual .build-deps \
     gem cleanup fluentd && \
     apk del .build-deps && \
     cd /tmp && \
-    wget https://github.com/stakater/kube-gen/releases/download/0.3.1/kube-gen && \
+    wget https://github.com/stakater/kube-gen/releases/download/0.3.2/kube-gen && \
     mkdir -p /fluentd/etc/scripts && \
     mv /tmp/kube-gen /fluentd/etc/scripts/kube-gen && \
     chmod +x /fluentd/etc/scripts/kube-gen && \
@@ -22,7 +22,6 @@ RUN apk add --no-cache --virtual .build-deps \
 # Remove default conf
 RUN rm -f /fluentd/etc/*.conf
 
-COPY ./${FLUENTD_CONF} /fluentd/etc/
 COPY ./${FLUENTD_CONF_TEMPLATE} /fluentd/etc/template/
 COPY ./kill-processes.sh /fluentd/etc/scripts/
 
