@@ -1,13 +1,3 @@
-# Dockerfile for Fluentd on Kubernetes
-Dockerfile for fluentd with 
-* fluent-plugin-kubernetes_metadata_filter
-* fluent-plugin-elasticsearch
-* fluent-plugin-prometheus
-* fluent-plugin-concat
-
-
-Sample config for k8s already in image: 
-```
 {{ $pods := whereExist .Pods "ObjectMeta.Annotations.fluentd_configuration" -}}
 
 # Listen for logs on port 24224 of docker host network, as pod runs with HostNetwork: true
@@ -85,24 +75,3 @@ Sample config for k8s already in image:
   time_key timestamp
   reload_connections false
 </match>
-
-```
-
-Volume map `/fluentd/etc/` directory and add `fluent.conf`
-
-## Templating
-
-Now you can use a templated fluentd conf that can dynamically fetch parsing regexes from deployments. A sample template is given with name `fluent.conf.tpl`. You can simply add the following annotation to your pods:
-
-```yaml
-fluentd_configuration: >
-  [
-    [
-      {
-        "expression": "/(?<time>[^ ]* [^ ]*) +(?<log>[^ ].*$)/",
-        "time_format": "%Y/%m/%d %H:%M:%S",
-        "container_name": "container"
-      }
-    ]
-  ]
-```
