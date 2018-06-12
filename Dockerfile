@@ -13,7 +13,7 @@ RUN apk add --no-cache --virtual .build-deps \
     gem cleanup fluentd && \
     apk del .build-deps && \
     cd /tmp && \
-    wget https://github.com/stakater/kube-gen/releases/download/0.3.3/kube-gen && \
+    wget https://github.com/stakater/kube-gen/releases/download/0.3.4/kube-gen && \
     mkdir -p /kubegen/ && \
     mv /tmp/kube-gen /kubegen/kube-gen && \
     chmod +x /kubegen/kube-gen && \
