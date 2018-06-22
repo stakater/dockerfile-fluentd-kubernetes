@@ -11,6 +11,7 @@ RUN apk add --no-cache --virtual .build-deps \
     gem install --no-document fluent-plugin-prometheus -v 0.2.1 && \
     gem install --no-document fluent-plugin-concat -v 2.1.0 && \
     gem install --no-document fluent-plugin-rewrite-tag-filter -v 2.1.0 && \
+    gem install --no-document fluent-plugin-slack -v 0.6.7 && \
     gem cleanup fluentd && \
     apk del .build-deps && \
     cd /tmp && \
